@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Form List</title>
+<title>View Profile</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -32,7 +32,17 @@ body {
 </style>
 </head>
 <body>
-	<!-- Fixed navbar -->
+<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -45,41 +55,96 @@ body {
 				</button>
 				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" class="navbar-collapse ">
 				<ul class="nav navbar-nav">
 					<li><a href="/formbuilder/">Home</a></li>
-					<li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
+					<li><a href="/formbuilder/user/list.html">Users</a></li>
 					<li><a href="/formbuilder/form/list.html">Forms</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="		false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a href="/formbuilder/form/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW FORM
+						</a>
+					</li>
 				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Menu1</a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="active"><a href="./">Menu3<span class="sr-only">(current)</span></a></li>
+				<li><a href="/formbuilder/user/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW USER
+						</a>
+					</li>
+
+					<li><a href="#">LOGIN<span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+	
+<!-- end of nav -->
 <div class="row">
-  		<div class="col-sm-10"><h1>User Info</h1></div>
-  		<div class="col-sm-10"><h2>${user.firstName} ${user.lastName}</h2></div>
-  		<div class="col-sm-10"><h4>${user.email} </h4></div>
-  		<div class="col-sm-10"><h4>${user.role} </h4></div>
-</div>
-</body>
+	<div class="col-xs-10 col-xs-offset-1 col1">
+      <div class=" col-md-9 col-lg-9 "> 
+                <table class="table table-user-information">
+                    <tbody>
+                    <div class="col-sm-10"><h4>Role: ${user.role} </h4></div>
+                      <tr>
+                        <td>Name:</td>
+                        <td>${user.firstName} ${user.lastName}</td>
+                      </tr>
+                      <tr>
+                        <td>Email:</td>
+                        <td>${user.email}</td>
+                      </tr>
+                         <tr>
+                   
+                        <td>Address 1:</td>
+                        <td>${user.address.address1}</td>
+                      </tr>
+                      <tr>
+                        <td>Address 2:</td>
+                        <td>${user.address.address2}</td>
+                      </tr>
+                      <tr>
+                      	<td>City:</td>
+                      	<td>${user.address.city}</td>
+                      	<td>
+                      </tr>
+                      <tr>
+                      	<td>State:</td>
+                      	<td>${user.address.state}</td>
+                      </tr>
+                      <tr>
+                      	<td>Zip Code</td>
+                      	<td>${user.address.zip}</td>
+                      </tr>
+                      <tr>
+                      	<td>Country</td>
+                      	<td>${user.address.country}</td>
+                      </tr>
+                      <tr>
+                      	<td>Home Phone</td>
+                      	<td>${user.address.phoneHome}</td>
+                      </tr>
+                      <tr>
+                      	<td>Work Phone</td>
+                      	<td>${user.address.phoneWork}</td>
+                      </tr>
+                      <tr>
+                      	<td>Mobile phone</td>
+                      	<td>${user.address.phoneCell}</td>
+                      </tr>
+                      <tr>
+                       <td  class="col-sm-1"> <a href="/formbuilder/user/list.html"><button class="btn btn-primary btn-block">User List</button> </a></td>
+                        <td class="col-sm-1"> <a href='edit.html?id=${user.id}'><button class="btn btn-primary btn-block">Edit User</button></a></td>
+                      </tr>
+                    </tbody>
+                </table>
+             </div>
+			</div>
+		</div>
+	</body>
 </html>
+\
+
 
 
 

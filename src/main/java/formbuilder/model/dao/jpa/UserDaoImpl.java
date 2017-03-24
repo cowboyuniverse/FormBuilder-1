@@ -37,11 +37,11 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User getUserByUsername(String name) {
-		return null;
+	public User getUserByUserEmail(String email) {
+		String query = "FROM Users WHERE email= :email";
+		User user = entityManager.createQuery(query,User.class).setParameter("email", email).getSingleResult();
+		return user;
 	}
-	
-
     @Override
     @Transactional
     public void delete( User user ) {
@@ -55,5 +55,6 @@ public class UserDaoImpl implements UserDao{
     	User user = entityManager.find( User.class, id );
     	entityManager.remove( user );
     }
+
 
 }

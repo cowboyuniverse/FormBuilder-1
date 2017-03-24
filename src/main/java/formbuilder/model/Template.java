@@ -13,21 +13,43 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 
-@Entity(name = "form")
-public class Form implements Serializable {
+import javax.persistence.JoinColumn;
+
+
+@Entity(name = "templates")
+public class Template implements Serializable {
 	
 	@Id
-  @GeneratedValue
+	@GeneratedValue
+	@Column(name="template_id")
 	private Integer id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="description")
 	private String description;
+	
+	@Column(name="available")
 	private boolean available; 	// form can be disabled for example if the admin wants to make changes
+	
 	@ManyToOne
 	private User user;
-	@OneToMany(mappedBy="form",cascade=CascadeType.ALL)
-	@Column(name="page")
-	@OrderColumn(name="page_number")
-	private List<Page> pages;
+	
+    @OneToMany(mappedBy = "template", cascade = CascadeType.ALL)
+    private List<Questions> questions;
+	
+    @ManyToOne
+    @JoinColumn(name = "binder_id")
+    private Binder binder;
+    
+	public List<Questions> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Questions> questions) {
+		this.questions = questions;
+	}
 	@Column(name = "create_date")
 	private Date createDate;
 	@Column(name = "update_date")
@@ -36,14 +58,17 @@ public class Form implements Serializable {
 	private Date submitDate;
 	@Column(name = "finished")
 	private boolean isfinished;
-	
-	public Form(List<Page> pages ){
-		this.pages = pages;
-	}
-	
-	public Form(){
+
+	public Template(){
 		
 	}
+	
+	
+	public Template( String templateName){
+		this.name = templateName;
+
+	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -69,12 +94,8 @@ public class Form implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<Page> getPages() {
-		return pages;
-	}
-	public void setPages(List<Page> pages) {
-		this.pages = pages;
-	}
+
+	
 	public Date getCreateDate() {
 		return createDate;
 	}

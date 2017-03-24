@@ -13,8 +13,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 @Table(name = "users" , schema="public")
 public class User implements Serializable {
@@ -44,8 +46,12 @@ public class User implements Serializable {
     @Column(name = "role")
     private Role role;
     
-    @Column(name = "active")
-    private boolean active;  //user account can be disabled
+    public User(){
+    	
+    }
+    
+//    @Column(name = "active")
+//    private boolean active;  //user account can be disabled
 	
 	public Integer getId() {
 		return id;
@@ -87,11 +93,11 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+//	public boolean isActive() {
+//		return active;
+//	}
+//	public void setActive(boolean active) {
+//		this.active = active;
+//	}
 
 }

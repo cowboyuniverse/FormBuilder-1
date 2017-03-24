@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+
 @Embeddable
 public class UserAddress implements Serializable {
 	
@@ -21,6 +22,25 @@ public class UserAddress implements Serializable {
 	@Column(name = "phone_cell")
 	private String phoneCell;
 	
+	public UserAddress(){
+		
+	}
+
+	
+	
+	public UserAddress(String address1, String address2, String city, String state, String zip, String country,
+			String phoneHome, String phoneWork, String phoneCell) {
+		super();
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.country = country;
+		this.phoneHome = phoneHome;
+		this.phoneWork = phoneWork;
+		this.phoneCell = phoneCell;
+	}
 	
 	public String getAddress1() {
 		return address1;

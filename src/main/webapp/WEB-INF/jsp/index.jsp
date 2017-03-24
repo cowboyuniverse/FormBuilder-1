@@ -6,6 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+   
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Form List</title>
 <!-- Latest compiled and minified CSS -->
@@ -34,7 +43,17 @@ body {
 </style>
 </head>
 <body>
-	<!-- Fixed navbar -->
+<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -47,47 +66,81 @@ body {
 				</button>
 				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" class="navbar-collapse ">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/formbuilder/">Home</a></li>
+					<li><a href="/formbuilder/">Home</a></li>
 					<li><a href="/formbuilder/user/list.html">Users</a></li>
 					<li><a href="/formbuilder/form/list.html">Forms</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="		false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a href="/formbuilder/form/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW FORM
+						</a>
+					</li>
 				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Menu1</a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="active"><a href="./">Menu3<span class="sr-only">(current)</span></a></li>
+				<li><a href="/formbuilder/user/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW USER
+						</a>
+					</li>
+
+					<li><a href="#">LOGIN<span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	<div class="container">
-		<div class="jumbotron">
-			<h2>Welcome to Formbuilder</h2>
-<!-- 			<ul>
-			<li><h4><a href="user/list.html">Users</a></h4></li>
-			<li><h4><a href="form/list.html">Forms</a></h4></li>
-			</ul> -->		
-		</div>
-	</div>
+	
+<!-- end of nav -->
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2017</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
 </body>
 </html>
-
-
 
 

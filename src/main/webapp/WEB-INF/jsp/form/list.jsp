@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +31,13 @@ body {
 	min-height: 2000px;
 	padding-top: 70px;
 }
+
+
+.profile 
+{
+    min-heightf: 355px;
+    display: inline-block;
+    }
 </style>
 </head>
 <body>
@@ -42,85 +51,99 @@ body {
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
+				<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" class="navbar-collapse ">
 				<ul class="nav navbar-nav">
 					<li><a href="/formbuilder/">Home</a></li>
 					<li><a href="/formbuilder/user/list.html">Users</a></li>
-					<li class="active"><a href="/formbuilder/form/list.html">Forms</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a href="/formbuilder/form/list.html">Forms</a></li>
+					<li><a href="/formbuilder/form/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW FORM
+						</a>
+					</li>
 				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Menu1</a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="active"><a href="./">Menu3<span class="sr-only">(current)</span></a></li>
+				<li><a href="/formbuilder/user/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW USER
+						</a>
+					</li>
+
+					<li><a href="#">LOGIN<span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+	
+<!-- end of nav -->
 	<div class="container">
 
 		<c:if test="${empty forms}">
 			<h4>There are no forms to display.</h4>
 		</c:if>
-
-		<c:if test="${not empty forms}">
-			<table class="table table-striped table-hover">
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Description</th>
-
-					<th>Available</th>
-					<th>Action</th>
-				</tr>
-				<c:forEach items="${forms}" var="form">
-					<tr>
-						<td class="col-md-1">${form.id}</td>
-						<td class="col-md-3">${form.name}</td>
-
-						<td class="col-md-3">${form.description}</td>
-						<c:choose>
-  							<c:when test="${form.available}">
-								<td class="col-md-2">YES</td>
-							</c:when>
-							<c:otherwise>
-								<td class="col-md-2">NO</td>
-							</c:otherwise>
-						</c:choose>	
-						
-						<td class="col-md-3">
-						<a href="view/${form.id}.html"><button type="button" class="btn btn-info btn-sm">View Details</button></a>
-						<a href="edit/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit </button></a>
-    					<a href="remove/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Remove </button></a>
-        				</td>
-
-					</tr>
-				</c:forEach>
-			</table>
-
-		</c:if>
-	</div>
 	
-	<div class="container">
-		<a href="add.html" class="btn btn-info"> <span
-			class="glyphicon glyphicon-plus"></span> ADD NEW FORM
-		</a>
+	
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<c:if test="${not empty forms}">
+<c:forEach items="${forms}" var="form">
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+    	 <div class="well profile">
+            <div class="col-sm-12">
+                <div class="col-xs-12 col-sm-8">
+                    <h2>${form.name}</h2>
+                    <p><strong>Form Id: </strong>${form.id} </p>
+                    <p><strong>Description: </strong> ${form.description} </p>
+                    <p><strong>Form Availability </strong>${form.available}</p>
+            		<p><strong>Created On </strong>${form.createDate }</p>
+            		<c:choose>
+				    <c:when test="${fn:length(form.pages)-1< 0}">
+				       <p><strong># of Pages </strong>${fn:length(form.pages)}</p>
+				       
+				    </c:when>    
+				    <c:otherwise>
+				        <p><strong># of Pages </strong>${fn:length(form.pages)-1}</p>
+				    </c:otherwise>
+				</c:choose>
+				            		
+                </div>             
+     
+            </div>            
+            <div class="col-xs-12 divider text-center">
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <h2><strong>  </strong></h2>                    
+                    <p><small></small></p>
+                    <a href="view/${form.id}.html"><button class="btn btn-success btn-block"><span class="fa fa-edit"></span> View </button></a>
+                </div>
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <h2><strong></strong></h2>                    
+                    <p><small></small></p>
+                    <a href="edit/${form.id}.html"><button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span> Edit </button></a>
+                </div>
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <h2><strong></strong></h2>                    
+                    <p><small></small></p>
+                    <a href="remove/${form.id}.html"><button type="button" class="btn btn-warning btn-block"><span class="glyphicon glyphicon-remove"></span> Remove </button></a>
+                    
+                </div>
+            </div>
+    	 </div>                 
+		</div>
 	</div>
-
+</c:forEach>
+</c:if>
 </body>
 </html>

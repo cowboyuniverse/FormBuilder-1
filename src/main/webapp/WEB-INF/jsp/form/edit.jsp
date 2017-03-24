@@ -35,8 +35,17 @@ body {
 </style>
 </head>
 <body>
-
 <!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -49,33 +58,31 @@ body {
 				</button>
 				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" class="navbar-collapse ">
 				<ul class="nav navbar-nav">
 					<li><a href="/formbuilder/">Home</a></li>
 					<li><a href="/formbuilder/user/list.html">Users</a></li>
-					<li class="active"><a href="/formbuilder/form/list.html">Forms</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a href="/formbuilder/form/list.html">Forms</a></li>
+					<li><a href="/formbuilder/form/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW FORM
+						</a>
+					</li>
 				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Menu1</a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="active"><a href="./">Menu3<span class="sr-only">(current)</span></a></li>
+				<li><a href="/formbuilder/user/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW USER
+						</a>
+					</li>
+
+					<li><a href="#">LOGIN<span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+	
+<!-- end of nav -->
 
 <div class="container">
 <form:form modelAttribute="form">

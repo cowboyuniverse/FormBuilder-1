@@ -3,7 +3,6 @@ package formbuilder.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,38 +12,73 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 
-@Entity(name = "form")
-public class Form implements Serializable {
+import java.util.ArrayList;
+import javax.persistence.CollectionTable;
+
+import javax.persistence.ElementCollection;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Entity(name = "binder")
+public class Binder implements Serializable {
 	
 	@Id
-  @GeneratedValue
+	@GeneratedValue
+  	@Column(name = "binder_id")
 	private Integer id;
+	
+    @Column(name = "name")
 	private String name;
+    
+    @Column(name = "description")
 	private String description;
+    
+    @Column(name = "available")
 	private boolean available; 	// form can be disabled for example if the admin wants to make changes
+	
 	@ManyToOne
 	private User user;
-	@OneToMany(mappedBy="form",cascade=CascadeType.ALL)
-	@Column(name="page")
-	@OrderColumn(name="page_number")
-	private List<Page> pages;
+	
+    @OneToMany(mappedBy = "binder", cascade = CascadeType.ALL)
+    @OrderBy("template_id")
+    private List<Template> templates;
+	
 	@Column(name = "create_date")
 	private Date createDate;
+	
 	@Column(name = "update_date")
 	private Date updateDate;
 	@Column(name = "submit_date")
 	private Date submitDate;
 	@Column(name = "finished")
 	private boolean isfinished;
-	
-	public Form(List<Page> pages ){
-		this.pages = pages;
-	}
-	
-	public Form(){
+
+	public Binder(){
 		
 	}
 	
+	public Binder(String name){
+		this.name = name;
+		templates =  new ArrayList<Template>();
+	}	
+	
+	
+	
+	public List<Template> getTemplates() {
+		return templates;
+	}
+
+	public void setTemplates(List<Template> templates) {
+		this.templates = templates;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -68,12 +102,6 @@ public class Form implements Serializable {
 	}
 	public void setUser(User user) {
 		this.user = user;
-	}
-	public List<Page> getPages() {
-		return pages;
-	}
-	public void setPages(List<Page> pages) {
-		this.pages = pages;
 	}
 	public Date getCreateDate() {
 		return createDate;

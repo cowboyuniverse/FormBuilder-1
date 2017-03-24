@@ -1,8 +1,3 @@
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -12,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Form List</title>
+<title>Edit Profle</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -49,61 +44,54 @@ body {
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
+				<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" class="navbar-collapse ">
 				<ul class="nav navbar-nav">
-					<li ><a href="/formbuilder/">Home</a></li>
-					<li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
+					<li><a href="/formbuilder/">Home</a></li>
+					<li><a href="/formbuilder/user/list.html">Users</a></li>
 					<li><a href="/formbuilder/form/list.html">Forms</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="		false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a href="/formbuilder/form/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW FORM
+						</a>
+					</li>
 				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Menu1</a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="active"><a href="./">Menu3<span class="sr-only">(current)</span></a></li>
+				<li><a href="/formbuilder/user/add.html" class="btn btn-secondary"> <span
+							class="glyphicon glyphicon-plus"></span> ADD NEW USER
+						</a>
+					</li>
+
+					<li><a href="#">LOGIN<span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	
+<!-- end of nav -->
 			
+<!--  *********************************************************  -->
 <div class="row">
-  		<div class="col-sm-10"><h1>Enter New User Information</h1></div>
+  		<div class="col-sm-10"><h1>Edit Profile Information</h1></div>
   	 </div>
-    
-   <form:form  modelAttribute="user" class = "form" >
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <form:input path="firstName" class="form-control" /> 
-						</div>
-                      </div>
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                            <form:input path="lastName" class="form-control"/> 
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="email"><h4>Email: ${user.email} <br/></h4></label> 
-                          </div>
-                      </div>
-  
- 					 <div class="form-group">
-                          <div class="col-xs-6">
+<div class="panel-body">
+				<!-- <form id="editProfileSeeker" action="editProfile.html" method="post" class="form-horizontal"> -->
+				 <form:form  modelAttribute="user" class="form-horizontal" >
+					<fieldset>
+                          <div class="col-xs-8">
                              <label for="role"><h4>ADMIN, STAFF, USER <br/></h4></label> 
                              <form:select path="role" > <br/>
                               <c:forEach items="${role}" var="role">
@@ -111,12 +99,102 @@ body {
                               </c:forEach>
                              </form:select> <br /> 
                           </div>
-                      </div>
+                      <br><br>
+                    </fieldset>
 
-
-<input type="submit" name="edit" value="edit" class="btn btn-info btn-lg" class="glyphicon glyphicon-plus"/>
-</form:form>
-</body>
+					<fieldset>
+							<label for="firstName" class="col-xs-2 control-label">First Name</label>
+							<div class="col-xs-3">
+								<input type="text" class="form-control" id="firstName"
+									name="firstName" path = "firstName" value="${user.firstName}" />
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="lastName" class="col-xs-2 control-label">Last Name</label>
+							<div class="col-xs-3">
+								<input type="text" class="form-control" id="lastName"
+									name="lastName" value="${user.lastName}" />
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="email" class="col-xs-2 control-label">Email</label>
+							<div class="col-xs-3">
+								<input type="email" name="email" class="form-control" id="email"
+									placeholder="email" value="${user.email }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="address1" class="col-xs-2 control-label">Street Address</label>
+							<div class="col-xs-3">
+								<input type="text" name="address1" class="form-control"
+									id="address1" placeholder="Street Address"  value="${user.address.address1}"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="address2" class="col-xs-2 control-label">Address 2 (Apt, Suite, etc.)</label>
+							<div class="col-xs-3">
+								<input type="text" name="address2" class="form-control"
+									id="address2" placeholder="Street" value="${user.address.address2}"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="city" class="col-xs-2 control-label">City</label>
+							<div class="col-xs-3">
+								<input type="text" name="city" class="form-control" id="city"
+									placeholder="City" value="${user.address.city }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="state" class="col-xs-2 control-label">State</label>
+							<div class="col-xs-3">
+								<input type="text" name="state" class="form-control" id="state"
+									placeholder="State" value="${user.address.state }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="zip" class="col-xs-2 control-label">Zip</label>
+							<div class="col-xs-3">
+								<input type="text" name="zip" class="form-control" id="zip"
+									placeholder="Zip code" value="${user.address.zip }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="zip" class="col-xs-2 control-label">Country</label>
+							<div class="col-xs-3">
+								<input type="text" name="country" class="form-control" id="country"
+									placeholder="Country" value="${user.address.country }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="phoneHome" class="col-xs-2 control-label">Home Phone Number</label>
+							<div class="col-xs-3">
+								<input type="text" name="phoneHome" class="form-control" id="phoneHome"
+									placeholder="Home Phone" value="${user.address.phoneHome }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="phoneWork" class="col-xs-2 control-label">Work Phone Number</label>
+							<div class="col-xs-3">
+								<input type="text" name="phoneWork" class="form-control" id="phoneWork"
+									placeholder="Work Phone" value="${user.address.phoneWork }"/>
+							</div>
+					</fieldset>
+					<fieldset>
+							<label for="phoneCell" class="col-xs-2 control-label">Mobile Phone Number</label>
+							<div class="col-xs-3">
+								<input type="text" name="phoneCell" class="form-control" id="phoneCell"
+									placeholder="Mobile Phone" value="${user.address.phoneCell }"/>
+							</div>
+					<br><br><br>
+					<div class="col-sm-4 col-sm-offset-1">
+								<button type="submit" class="btn btn-primary btn-block">Save</button>
+					</div>
+			</form:form>
+			</div>
+	</body>
 </html>
+
+
+
 
 

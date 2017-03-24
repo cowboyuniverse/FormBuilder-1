@@ -12,31 +12,41 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "Item")
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+
+
+@Entity(name = "question")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Item implements Serializable{
+public class Questions implements Serializable{
     private static final long serialVersionUID = 1L;
     
+
     @Id
+    @Column(name = "question_id")
     @GeneratedValue
-    private Integer id;
+    private int id;
+    
+    @Column(name = "name")
     private String name;
+    
+    @Column(name = "description")
     private String description;
-    private boolean available;  //block can be disabled
     
     @Column(name = "order_id")
     private int orderId; // in which order this item should be shown, when only
                             // by itself the default is 0
-    @ManyToOne
-    private Block block;
-    public Item (){
-    	
-    }
+
     
-    public Item(String name, String description){
-    	this.name = name;
-    	this.description = description;
-    }
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @JoinColumn(name = "user_id")
+    private User user;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "template_id")
+    private Template template;
     
     public enum Type {
         TEXT,
@@ -44,6 +54,16 @@ public class Item implements Serializable{
         CHECKBOX,
         PULLDOWN
     }
+    
+    public Questions(){
+    	
+    }
+    
+    public Questions(User user, Template template){
+    	this.user = user;
+    	this.template = template;
+    }
+    
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "type")
     private Type itemType;
@@ -86,15 +106,33 @@ public class Item implements Serializable{
         this.orderId = orderId;
     }
 
-    public Block getBlock() {
-        return block;
-    }
 
-    public void setBlock(Block block) {
-        this.block = block;
-    }
 
-    public boolean isRequired() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Template getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(Template template) {
+		this.template = template;
+	}
+
+	public Type getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(Type itemType) {
+		this.itemType = itemType;
+	}
+
+	public boolean isRequired() {
         return isRequired;
     }
 
@@ -102,13 +140,6 @@ public class Item implements Serializable{
         this.isRequired = isRequired;
     }
 
-    public Type getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(Type itemType) {
-        this.itemType = itemType;
-    }
 
     public PdfField getMatchField() {
         return matchField;
@@ -118,13 +149,5 @@ public class Item implements Serializable{
         this.matchField = matchField;
     }
 
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-    
     
 }

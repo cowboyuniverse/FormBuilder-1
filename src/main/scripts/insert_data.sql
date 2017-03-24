@@ -28,6 +28,27 @@ INSERT INTO selection_answer_selections(selection_answer_id, selection_selection
 insert into block(id,description,name,page_id) values(108,'','',101);
 insert into item(dtype,id,available,description,required,type,name,order_id,max,min,text_length,block_id,matchField_id,answer_id) values('item_selection',121,'f','','f',1,'APPLICANT’S ORIGINAL OR CERTIFIED COPY OF BIRTH CERTIFICATE', 0,1,0,-1,108,null,null);
 
+
+
+INSERT INTO block (id, description, name, page_id) values (104, NULL, '5. CONTACT INFORMATION ', 100);
+INSERT INTO item(id, description, required, item_type, name, order_id, max, min, input_text, textlength, block_id, matchfield_id, answer_id)
+VALUES VALUES (104, '', true, 0, 'Primary Phone Number:', 0, 0, 0, '', 1024, 104, null, null);
+INSERT INTO item(id, description, required, item_type, name, order_id, max, min, input_text, textlength, block_id, matchfield_id, answer_id)
+VALUES VALUES (105, '', true, 0, 'Secondary Phone Number:', 0, 0, 0, '', 1024, 104, null, null);
+INSERT INTO item(id, description, required, item_type, name, order_id, max, min, input_text, textlength, block_id, matchfield_id, answer_id)
+VALUES VALUES (106, '', true, 0, 'Work Phone Number:', 0, 0, 0, '', 1024, 104, null, null);
+INSERT INTO item(id, description, required, item_type, name, order_id, max, min, input_text, textlength, block_id, matchfield_id, answer_id)
+VALUES VALUES (107, '', true, 0, 'Email Address: ', 0, 0, 0, '', 1024, 104, null, null);
+
+
+
+insert into block(id,description,name,page_id) values(108,'','9. HOW MANY TIMES HAVE YOU BEEN MARRIED? ',101);
+INSERT INTO item(id, description, required, item_type, name, order_id, max, min, input_text, textlength, block_id, matchfield_id, answer_id)
+VALUES (121, '', true, 0, 'Country:', 0, 0, 0, '', 1024, 105, null, null);
+
+
+
+
 INSERT INTO selections(selection_id, description, name, order_id, value, item_id)
 VALUES (104, '', 'SYS_CHECKED', 0,'0',121);
 INSERT INTO selections(selection_id, description, name, order_id, value, item_id)

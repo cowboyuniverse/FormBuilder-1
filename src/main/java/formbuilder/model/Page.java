@@ -28,6 +28,14 @@ public class Page implements Serializable {
 	@OrderBy("blockOrder")
 	@Column(name="block")
 	private List<Block> block;
+	
+	public Page(){
+		
+	}
+	
+	public Page(Form form ){
+		this.form = form;
+	}
 
 	public Integer getId() {
 		return id;

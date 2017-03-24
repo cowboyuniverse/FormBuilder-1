@@ -57,7 +57,7 @@ public class FormController {
     }
   
       @RequestMapping(value = "/form/add.html", method = RequestMethod.POST)
-    public String addForm(@RequestParam String name, @RequestParam String description, @RequestParam String available) {
+    public String addForm(@RequestParam String name, @RequestParam String description, @RequestParam String available,@RequestParam String question ) {
 
         // TODO: instead of creating new, use form object in session scope
         Form form = new Form();
@@ -82,6 +82,8 @@ public class FormController {
 
         form.setCreateDate(new java.sql.Date(new java.util.Date().getTime()));
 
+      
+        
         formDao.saveForm(form);
 
         // TODO: This should actually be redirecting the the form details page
@@ -102,26 +104,47 @@ public class FormController {
         page.setForm(form);
         page.setPageNumber(nextPageNum);
         formDao.savePage(page);
-        
+
         models.put("page", page);
         models.put("form", form);
-        
+
         return "form/pageview";
     }
   
       @RequestMapping(value = "/form/page_view.html", method = RequestMethod.GET)
-    public String viewPage(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {
-        Form form = formDao.getForm(id);
-        List<Page> pages = form.getPages();
-        Page page = null;
-        if (p >= 1) {
-            page = pages.get(p);
-        } else {
-            page = pages.get(1);
-        }
-
-        models.put("page", page);
-        models.put("form", form);
+    public String viewPage(@RequestParam Integer id,  @RequestParam String text, @RequestParam String description, SessionStatus sessionStatus, ModelMap models) {
+//        Form form = formDao.getForm(id);
+//        List<Page> pages = form.getPages();
+//        Page page = null;
+//        if (p >= 1) {
+//            page = pages.get(p);
+//        } else {
+//            page = pages.get(1);
+//        }
+//
+//        models.put("page", page);
+//        models.put("form", form)
+    	  
+    	  Item item = new Item(text, description);
+    	  
+    	
+        return "form/pageview";
+    }
+      
+      @RequestMapping(value = "/form/page_view", method = RequestMethod.POST)
+    public String viewPage(@RequestParam Integer id, ModelMap models) {
+//        Form form = formDao.getForm(id);
+//        List<Page> pages = form.getPages();
+//        Page page = null;
+//        if (p >= 1) {
+//            page = pages.get(p);
+//        } else {
+//            page = pages.get(1);
+//        }
+//
+//        models.put("page", page);
+//        models.put("form", form)
+    	  ;
 
         return "form/pageview";
     }
